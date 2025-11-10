@@ -11,6 +11,7 @@ public class GDDCreatorMainWindow : EditorWindow
 {
    // Overall Variables
    private int sectionSpacing = 25;
+   private int subSectionSpacing = 10;
    private GDDData gddData;
 
    private Vector2 mainScroll;
@@ -19,8 +20,8 @@ public class GDDCreatorMainWindow : EditorWindow
    private Vector2 mechanicsScroll;
 
    // APIKey Handling
-   private bool showApiKey = false; // foldout toggle
-   private string apiKey = "";       // store your API key
+   private bool showApiKey = false;
+   private string apiKey = "";
 
 [MenuItem("Window/Game Design Doc Creator")]
     public static void OpenWindow()
@@ -69,7 +70,6 @@ public class GDDCreatorMainWindow : EditorWindow
       GUILayout.Space(5);
 
       GUILayout.Label("Click a Tag to Remove");
-      tagScroll = EditorGUILayout.BeginScrollView(tagScroll, GUILayout.Height(50));
       for (int i = 0; i < gddData.DocGenreTags.Count; i++)
       {
          if (GUILayout.Button(gddData.DocGenreTags[i]))
@@ -77,7 +77,6 @@ public class GDDCreatorMainWindow : EditorWindow
             gddData.DocGenreTags.Remove(gddData.DocGenreTags[i]);
          }
       }
-      GUILayout.EndScrollView();
 
       GUILayout.Space(sectionSpacing);
 
@@ -122,7 +121,6 @@ public class GDDCreatorMainWindow : EditorWindow
       GUILayout.Space(5);
 
       GUILayout.Label("Click character to edit: ");
-      characterScroll = EditorGUILayout.BeginScrollView(characterScroll, GUILayout.Height(50));
       for (int i = 0; i < gddData.Characters.Count; i++)
       {
          if (GUILayout.Button(gddData.Characters[i].getName()))
@@ -130,7 +128,6 @@ public class GDDCreatorMainWindow : EditorWindow
             GDDCharacterCreator.OpenWindow(this, gddData.Characters[i]);
          }
       }
-      EditorGUILayout.EndScrollView();
 
       EditorGUILayout.Space(sectionSpacing);
 
@@ -147,7 +144,6 @@ public class GDDCreatorMainWindow : EditorWindow
       GUILayout.Space(5);
 
       GUILayout.Label("Click mechanic to edit: ");
-      mechanicsScroll = EditorGUILayout.BeginScrollView(mechanicsScroll, GUILayout.Height(50));
       for (int i = 0; i < gddData.DocCoreMechanics.Count; i++)
       {
          if (GUILayout.Button(gddData.DocCoreMechanics[i].getName()))
@@ -155,7 +151,6 @@ public class GDDCreatorMainWindow : EditorWindow
             GDDGameMechanicCreator.OpenWindow(this, gddData.DocCoreMechanics[i]);
          }
       }
-      EditorGUILayout.EndScrollView();
 
       EditorGUILayout.Space(sectionSpacing);
 
@@ -179,14 +174,14 @@ public class GDDCreatorMainWindow : EditorWindow
          apiKey = EditorGUILayout.PasswordField("API Key", apiKey);
       }
 
-      GUILayout.Space(10);
+      GUILayout.Space(subSectionSpacing);
 
       if (GUILayout.Button("Export GDD as Text File", GUILayout.Height(30)))
       {
          GDDTextExporter.ExportToText(gddData);
       }
 
-      GUILayout.Space(10);
+      GUILayout.Space(subSectionSpacing);
 
       if (GUILayout.Button("Get AI Analysis", GUILayout.Height(30)))
       {
