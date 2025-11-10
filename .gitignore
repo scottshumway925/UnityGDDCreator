@@ -3,6 +3,8 @@
 
 # Except .gitignore itself
 !.gitignore
+!/Assets/
+!/Assets/Editor/
 
 # Optionally, only include scripts inside the Editor folder
 !/Assets/Editor/*.cs
