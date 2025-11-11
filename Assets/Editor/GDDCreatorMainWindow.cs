@@ -85,7 +85,9 @@ public class GDDCreatorMainWindow : EditorWindow
        * description for the game
        **********************************************/
       GUILayout.Label("Add an Elevator Pitch");
-      gddData.SetElevatorPitch(EditorGUILayout.TextArea(gddData.DocElevatorPitch, wrapStyle, GUILayout.Height(100)));
+      float elevatorTextHeight = wrapStyle.CalcHeight(new GUIContent(gddData.DocElevatorPitch), EditorGUIUtility.currentViewWidth - 22f);
+      elevatorTextHeight = Mathf.Max(100f, elevatorTextHeight);
+      gddData.SetElevatorPitch(EditorGUILayout.TextArea(gddData.DocElevatorPitch, wrapStyle, GUILayout.Height(elevatorTextHeight)));
       GUILayout.Space(sectionSpacing);
 
       /**********************************************
@@ -159,7 +161,9 @@ public class GDDCreatorMainWindow : EditorWindow
        **********************************************/
 
       GUILayout.Label("Add Story Overview");
-      gddData.SetStoryLine(EditorGUILayout.TextArea(gddData.StoryLine, wrapStyle, GUILayout.Height(300)));
+      float storyTextHeight = wrapStyle.CalcHeight(new GUIContent(gddData.StoryLine), EditorGUIUtility.currentViewWidth - 22f);
+      storyTextHeight = Mathf.Max(100f, storyTextHeight);
+      gddData.SetStoryLine(EditorGUILayout.TextArea(gddData.StoryLine, wrapStyle, GUILayout.Height(storyTextHeight)));
       GUILayout.Space(sectionSpacing);
 
       /**********************************************
